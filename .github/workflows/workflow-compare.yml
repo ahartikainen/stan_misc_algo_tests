@@ -21,9 +21,14 @@ jobs:
     steps:
       - name: Checkout github
         uses: actions/checkout@v2
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v2
+        
+      - name: Download artifact from previous workflow
+        uses: dawidd6/action-download-artifact@v2
+        with:
+            github_token: ${{secrets.GITHUB_TOKEN}}
+            workflow: workflow_name.yml
+            workflow_conclusion: success
+            check_artifacts:  false
 
       - name: Setup miniconda
         uses: conda-incubator/setup-miniconda@v2
