@@ -14,8 +14,8 @@ model = cmdstanpy.CmdStanModel(
 fit = model.sample(
     data=schools_dat,
     chains=1,
-    iter_warmup=2,
-    iter_sampling=1,
+    iter_warmup=4,
+    iter_sampling=4,
     save_warmup=True,
     sig_figs=17,
     seed=123,
@@ -24,12 +24,13 @@ fit = model.sample(
 res = fit.draws_pd()
 
 print(" ")
-print(dir(fit.runset.stdout_files))
-for path in fit.runset.stdout_files:
-    with open(path) as f:
+print(fit.runset.stdout_files)
+for i, path in enumerate(fit.runset.stdout_files, 1):
+    file_out = f"stdout_{i}.txt"
+    with open(path) as fin, open(file_out, "w") as fout:
         try:
-            for i in range(100):
-                print(f.readline().strip())
+            fout.write(fin.read(-1))
+            print(f"Saved: {file_out}")
         except Exception as err:
             print("ERROR:", err)
 print("result:\n", res)

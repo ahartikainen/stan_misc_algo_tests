@@ -75,3 +75,8 @@ jobs:
       - name: CmdStanPy seed test
         run: |
           python run_cmdstanpy.py
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload stdout files
+          path: ./*.txt
