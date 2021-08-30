@@ -13,19 +13,23 @@ model = cmdstanpy.CmdStanModel(
     stan_file="Stan-models/8schools.stan",
 )
 
-fit = model.sample(
-    data=schools_dat,
-    chains=1,
-    iter_warmup=4000,
-    iter_sampling=4000,
-    save_warmup=True,
-    sig_figs=17,
-    seed=123,
-)
+for seed in range(1, 100):
+    fit = model.sample(
+        data=schools_dat,
+        chains=1,
+        iter_warmup=4000,
+        iter_sampling=4000,
+        save_warmup=True,
+        sig_figs=17,
+        seed=seed,
+    )
 
-res = fit.draws_pd(inc_warmup=True)
+    res = fit.draws_pd(inc_warmup=True)
+    file_out2 = f"lp_values_seed_{seed}_{platform.system()}.txt"
+    with open(file_out2, "w", newline="\n") as f:
+        res["lp__"].to_csv(f, index=False)
 
-print(" ")
+"""print(" ")
 print(fit.runset.stdout_files)
 for i, path in enumerate(fit.runset.stdout_files, 1):
     file_out = f"stdout_{i}_{platform.system()}.txt"
@@ -41,3 +45,4 @@ print("\n\n\n", res["lp__"].values[:3])
 file_out2 = f"lp_values_{platform.system()}.txt"
 with open(file_out2, "w") as f:
     res["lp__"].to_csv(f)
+"""
