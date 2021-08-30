@@ -36,4 +36,8 @@ for i, path in enumerate(fit.runset.stdout_files, 1):
         except Exception as err:
             print("ERROR:", err)
 print("result:\n", res)
-print("\n\n\n", res["lp__"].values)
+print("\n\n\n", res["lp__"].values[:3])
+
+file_out2 = f"lp_values_{platform.system()}.txt"
+with open(file_out2, "w") as f:
+    res["lp__"].to_csv(f)
