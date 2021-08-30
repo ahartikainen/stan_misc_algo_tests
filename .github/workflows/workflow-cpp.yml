@@ -27,7 +27,7 @@ jobs:
 
       - name: Create conda environment
         run: |
-          conda create -n "stan" python={{matrix.python-version}} cmdstanpy -c conda-forge
+          conda create -n "stan" python=${{matrix.python-version}} cmdstanpy -c conda-forge
 
       - name: CmdStanPy and CmdStan versions
         run: |
