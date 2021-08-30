@@ -9,6 +9,9 @@ jobs:
   cpp_run:
     name: Cpp
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -l {0}
     strategy:
       fail-fast: true
       matrix:
