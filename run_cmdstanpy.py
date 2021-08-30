@@ -24,7 +24,13 @@ fit = model.sample(
 res = fit.draws_pd()
 
 print(" ")
-print(dir(fit))
-print(dir(fit.runset))
+print(dir(fit.runset.stdout_files))
+for path in fit.runset.stdout_files:
+    with open(path) as f:
+        try:
+            for i in range(100):
+                print(f.readline().strip())
+        except Exception as err:
+            print("ERROR:", err)
 print("result:\n", res)
 print("\n\n\n", res["lp__"].values)

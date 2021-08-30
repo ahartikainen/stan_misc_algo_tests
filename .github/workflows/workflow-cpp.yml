@@ -70,7 +70,7 @@ jobs:
 
           find /usr/share/miniconda/envs/cmdstanpy-env/bin/cmdstan -type f -wholename "*stan/mcmc/stepsize_adaptation.hpp" 2>/dev/null | xargs sed -i 's/#include <cmath>/#include <cmath>\n#include <string>\n#include <iostream>\n/ w /dev/stdout'
           find /usr/share/miniconda/envs/cmdstanpy-env/bin/cmdstan -type f -wholename "*stan/mcmc/stepsize_adaptation.hpp" 2>/dev/null | xargs sed -i 's/epsilon = std::exp(x);/epsilon = std::exp(x);\nstd::cout << "LEARN STEPSIZE adapt_stat " << std::scientific << std::setprecision(15) << adapt_stat << " eta " << std::scientific << std::setprecision(15) << eta << " s_bar_ " << std::scientific << std::setprecision(15) << s_bar_ << " x " << std::scientific << std::setprecision(15) << x << " exp(x) " << std::scientific << std::setprecision(15) << epsilon << " x_eta " << std::scientific << std::setprecision(15) << x_eta << std::endl;\n/ w /dev/stdout'
-
+        if: "matrix.os" == "ubuntu-latest"
 
       - name: CmdStanPy seed test
         run: |
