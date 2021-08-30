@@ -27,6 +27,12 @@ jobs:
             condarc-file: cmdstanpy-condarc.yml
             auto-activate-base: false
 
+      - name: conda check
+        run: |
+          conda info
+          conda list
+
+
       - name: CmdStanPy and CmdStan versions
         run: |
           python -c 'import cmdstanpy;print("cmdstanpy version: {}".format(cmdstanpy.__version__))'
