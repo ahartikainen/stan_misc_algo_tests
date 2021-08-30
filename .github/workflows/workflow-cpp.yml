@@ -38,10 +38,9 @@ jobs:
 
       - name: CmdStanPy and CmdStan versions
         run: |
-          python -c 'import cmdstanpy;print("cmdstanpy version: {}".format(cmdstanpy.__version__))'
-          python -c 'import cmdstanpy;print("cmdstan version: {}".format(cmdstanpy.cmdstan_path()))'
+          python -c 'import cmdstanpy;print("\n\ncmdstanpy version: {}\ncmdstan version: {}\n".format(cmdstanpy.__version__, cmdstanpy.cmdstan_path()))'
 
 
       - name: CmdStanPy seed test
         run: |
-          python run_pystan.py
+          python run_cmdstanpy.py
