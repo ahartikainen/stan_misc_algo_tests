@@ -43,6 +43,10 @@ jobs:
       - name: CmdStanPy and CmdStan versions
         run: |
           python -c 'import cmdstanpy;print("\n\ncmdstanpy version: {}\ncmdstan version: {}\n".format(cmdstanpy.__version__, cmdstanpy.cmdstan_path()))'
+          
+      - name: See files
+        run: |
+          python -c 'import os;print(os.listdir());print([os.path.join(root, fname) for root, _, files for os.walk(".") for fname in files])'
 
       - name: CmdStanPy seed test
         run: |
