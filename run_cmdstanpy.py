@@ -23,7 +23,7 @@ fit = model.sample(
     seed=123,
 )
 
-res = fit.draws_pd()
+res = fit.draws_pd(inc_warmup=True)
 
 print(" ")
 print(fit.runset.stdout_files)
