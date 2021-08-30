@@ -3,13 +3,13 @@ name: Compare
 on:
   workflow_run:
     workflows: ["Cpp"]
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   cpp_run:
     name: Compare
     runs-on: ${{ matrix.os }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     defaults:
       run:
         shell: bash -l {0}
