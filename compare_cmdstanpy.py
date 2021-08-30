@@ -12,7 +12,7 @@ results = {}
 i = -1
 for i, path in enumerate(files):
     with open(path) as f:
-        res = pd.read_csv(f, float_precision="round_trip", index=None)
+        res = pd.read_csv(f, float_precision="round_trip")
         _, fname = os.path.split(os.path.splitext(path)[0])
         *_, seed, platform = fname.split("_")
         if seed not in results:
