@@ -25,3 +25,4 @@ res = fit.draws_pd()
 
 print(" ")
 print("result:\n", res)
+print("\n\n\n", res["lp"].values)
