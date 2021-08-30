@@ -1,0 +1,6 @@
+name: stan
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - cmdstanpy
