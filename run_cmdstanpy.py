@@ -24,5 +24,7 @@ fit = model.sample(
 res = fit.draws_pd()
 
 print(" ")
+print(dir(res))
+print(dir(res.runset))
 print("result:\n", res)
-print("\n\n\n", res["lp"].values)
+print("\n\n\n", res["lp__"].values)
