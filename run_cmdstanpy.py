@@ -1,3 +1,5 @@
+import platform
+
 import cmdstanpy
 import numpy as np
 
@@ -26,7 +28,7 @@ res = fit.draws_pd()
 print(" ")
 print(fit.runset.stdout_files)
 for i, path in enumerate(fit.runset.stdout_files, 1):
-    file_out = f"stdout_{i}.txt"
+    file_out = f"stdout_{i}_{platform.system()}.txt"
     with open(path) as fin, open(file_out, "w") as fout:
         try:
             fout.write(fin.read(-1))
