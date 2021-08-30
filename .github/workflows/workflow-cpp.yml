@@ -31,10 +31,12 @@ jobs:
 
       - name: CmdStanPy and CmdStan versions
         run: |
+          conda activate stan
           python -c 'import cmdstanpy;print("cmdstanpy version: {}".format(cmdstanpy.__version__))'
           python -c 'import cmdstanpy;print("cmdstan version: {}".format(cmdstanpy.cmdstan_path()))'
 
 
       - name: CmdStanPy seed test
         run: |
+          conda activate stan
           python run_pystan.py
