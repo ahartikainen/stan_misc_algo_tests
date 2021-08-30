@@ -6,9 +6,14 @@ on:
         - '**'
 
 jobs:
-  cpp_equality:
+  cpp_run:
     name: Cpp
-    runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        python-version: ["3.9"]
     steps:
       - name: Checkout github
         uses: actions/checkout@v2
@@ -16,12 +21,13 @@ jobs:
       - name: Setup miniconda
         uses: conda-incubator/setup-miniconda@v2
         with:
+            auto-update-conda: true
             auto-activate-base: true
             activate-environment: ""
 
       - name: Create conda environment
         run: |
-          conda create -n "stan" python=3.9 cmdstanpy -c conda-forge
+          conda create -n "stan" python={matrix.python-version} cmdstanpy -c conda-forge
 
       - name: CmdStanPy and CmdStan versions
         run: |
