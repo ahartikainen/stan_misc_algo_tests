@@ -1,4 +1,4 @@
-name: stan
+name: cmdstanpy-env
 channels:
   - conda-forge
   - defaults
