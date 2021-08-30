@@ -25,12 +25,12 @@ jobs:
             environment-file: cmdstanpy-environment.yml
             python-version: ${{ matrix.python-version }}
             condarc-file: cmdstanpy-condarc.yml
-            auto-activate-base: false
 
       - name: conda check
         run: |
           conda info
           conda list
+          conda env list
 
 
       - name: CmdStanPy and CmdStan versions
